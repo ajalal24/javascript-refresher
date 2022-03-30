@@ -31,7 +31,7 @@ let age = 13;
 //     console.log('Probably just some dude.')
 // }
 
-//Part 3
+// Part 3
 
 for (let i = 0; i <= 10; i++) {
     console.log(i)
