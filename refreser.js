@@ -40,9 +40,17 @@ for (let i = 0; i <= 10; i++) {
 tellMeMyAge();
 
 function tellMeMyAge() {
-    console.log('You are ' + age + ' years old!')
-} 
+    console.log('You are ' + age + ' years old!');
+}
 
-function makePizza(type, size) {
-    console.log('One ' + size + ' ' + type + ' pizza comign right up!' )
+let howMuchForAPizza = pricePizza('small');
+console.log(howMuchForAPizza);
+
+function pricePizza(size) {
+    let price;
+    if (size == 'large') {
+        return 17.00;
+    } else {
+        return 13.00;
+    }
 }
