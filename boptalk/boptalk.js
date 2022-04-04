@@ -1,17 +1,18 @@
-let inputMessage = 'Bob';
+let inputMessage = 'Hello';
 
-let vowels = 'aeiou';
-
-let letter = 'b';
-
-if (vowels.includes(letter)) {
-    console.log('vowel');
-} else {
-    console.log('consonant')
-}
+let vowels = 'aeiouAEIOU';
 
 let bopMessage = '';
-bopMessage += 'a';
-bopMessage += 'b';
+
+for (let i = 0; i <inputMessage.length; i++) {
+    letter = inputMessage[i];
+    if (vowels.includes(letter)) {
+        // console.log('vowel');
+        bopMessage += letter + 'op';
+    } else {
+        // console.log('consonant')
+        bopMessage += letter;
+    }
+}
 
 console.log(bopMessage);
