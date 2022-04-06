@@ -34,3 +34,9 @@ function listCard(suit) {
 }
 
 console.log(deck);
+
+const random = Math.floor(Math.random() * deck.length);
+deck.slice[random];
+console.log(random, deck[random]);
+
+console.log(deck);
