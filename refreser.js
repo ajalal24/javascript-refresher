@@ -43,11 +43,10 @@ function tellMeMyAge() {
     console.log('You are ' + age + ' years old!');
 }
 
-let howMuchForAPizza = pricePizza('small');
+let howMuchForAPizza = pricePizza('large');
 console.log(howMuchForAPizza);
 
 function pricePizza(size) {
-    let price;
     if (size == 'large') {
         return 17.00;
     } else {
