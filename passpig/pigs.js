@@ -1,5 +1,3 @@
-let pig = ['Pig', 'Razorback', 'Trotter', 'Snouter', 'Leaning Jowler']
-
 // Starting Player is 0.
 let playerNumber = 0;
 
@@ -9,6 +7,39 @@ function handleClick(id) {
         pass();
     } else {
         roll();
+    }
+}
+
+function roll() {
+    let pig1 = rollingPigs();
+    let pig2 = rollingPigs();
+    let pig1Id = 'player' + playerNumber + 'Pig1';
+    document.getElementById(pig1Id).innerHTML = pig1;
+    let pig2Id = 'player' + playerNumber + 'Pig2';
+    document.getElementById(pig2Id).innerHTML = pig2;
+}
+
+function pass() {
+    changeBackground();
+}
+
+function rollingPigs() {
+    // Roll for a pig and index number
+    const random = Math.random();
+    if (random < 0.007) {
+        // console.log('Leaning Jowler');
+        return 'Leaning Jowler';
+    } else if (random < 0.037) {
+        return 'Snouter';
+    } else if (random < 0.0125) {
+        console.log('Trotter');
+        return 'Trotter';
+    } else if (random < 0.349) {
+        return 'Razorback';
+    } else if (random < 0.651) {
+        return 'No Dot';
+    } else {
+        return 'Dot';
     }
 }
 
@@ -24,14 +55,4 @@ function changeBackground() {
 
     playerId = document.getElementById('player' + playerNumber);
     playerId.setAttribute('class', 'w3-card w3-container w3-dark-gray w3-round-large');
-}
-
-function roll() {
-    // Roll for a pig and index number
-    const random = Math.floor(Math.random() * pig.length);
-    console.log(random, pig[random]);
-}
-
-function pass() {
-    changeBackground();
 }
