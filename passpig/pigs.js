@@ -17,6 +17,11 @@ function roll() {
     document.getElementById(pig1Id).innerHTML = pig1;
     let pig2Id = 'player' + playerNumber + 'Pig2';
     document.getElementById(pig2Id).innerHTML = pig2;
+
+    //myScore
+    let rollScore = scorePigs(pig1, pig2);
+    let handScore = rollScore;
+    console.log(handScore);
 }
 
 function pass() {
@@ -27,12 +32,10 @@ function rollingPigs() {
     // Roll for a pig and index number
     const random = Math.random();
     if (random < 0.007) {
-        // console.log('Leaning Jowler');
         return 'Leaning Jowler';
     } else if (random < 0.037) {
         return 'Snouter';
     } else if (random < 0.0125) {
-        console.log('Trotter');
         return 'Trotter';
     } else if (random < 0.349) {
         return 'Razorback';
@@ -41,6 +44,21 @@ function rollingPigs() {
     } else {
         return 'Dot';
     }
+}
+
+function scorePigs(pig1, pig2) {
+    let score;
+    if (pig1 == 'Dot' && pig2 == 'Dot') {
+        score = 1;
+    } else if (pig1 == 'No Dot' && pig2 == 'No Dot') {
+        score = 1;
+    } else if (pig1 == 'Dot' && pig2 == 'No Dot' || pig1 == 'No Dot' && pig2 == 'Dot') {
+        score = 0;
+    } else if (pig1 == 'Razorback' && pig2 == 'Razorback') {
+        score = 10;
+    }
+
+    return score;
 }
 
 // Change the background of the card by getting the id of the card, (Cycles through each number making sure it never goes past 3)
