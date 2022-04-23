@@ -31,6 +31,7 @@ function pass() {
 function showPlayerScore(rollScore) {
     if (rollScore == 0) {
         player0HScore = 0;
+        // Heres the difficulty
         document.getElementById(player0HandScore).innerHTML = player0HScore;
         console.log(player0HScore);
     } else if (rollScore == 1) {
