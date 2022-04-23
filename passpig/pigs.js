@@ -1,6 +1,6 @@
 // Starting Player is 0.
 let playerNumber = 0;
-let player0HandScore = 0;
+let player0HScore = 0;
 let player0TotalScore = 0;
 
 // Using handleClick to find the id of the pass or roll button. 
@@ -30,20 +30,40 @@ function pass() {
 
 function showPlayerScore(rollScore) {
     if (rollScore == 0) {
-        console.log('0');
+        player0HScore = 0;
+        document.getElementById(player0HandScore).innerHTML = player0HScore;
+        console.log(player0HScore);
     } else if (rollScore == 1) {
-        console.log('1');
+        player0HScore += 1;
+        console.log(player0HScore);
+    } else if (rollScore == 5) {
+        player0HScore += 5;
+        console.log(player0HScore);
+    } else if (rollScore == 10) {
+        player0HScore += 10;
+        console.log(player0HScore);
+    } else if (rollScore == 15) {
+        player0HScore += 15;
+        console.log(player0HScore);
+    } else if (rollScore == 20) {
+        player0HScore += 20;
+        console.log(player0HScore);
+    } else if (rollScore == 40) {
+        player0HScore += 40;
+        console.log(player0HScore);
     } else {
-        console.log('Bigger')
+        player0HScore += 60;
+        console.log(player0HScore);
     }
-
 }
+
 function updatePigs(pig1, pig2) {
     let pig1Id = 'player' + playerNumber + 'Pig1';
     document.getElementById(pig1Id).innerHTML = pig1;
     let pig2Id = 'player' + playerNumber + 'Pig2';
     document.getElementById(pig2Id).innerHTML = pig2;
 }
+
 function rollingPigs() {
     // Roll for a pig and index number
     const random = Math.random();
@@ -82,7 +102,7 @@ function scorePigs(pig1, pig2) {
     } else if (pig1 == 'Snouter' || pig2 == 'Snouter') {
         score = 10;
     } else if (pig1 == 'Snouter' && pig2 == 'Snouter') {
-        score = 60;
+        score = 40;
     } else if (pig1 == 'Leanig Jowler' || pig2 == 'Leaning Jowler') {
         score = 15;
     } else if (pig1 == 'Leanig Jowler' && pig2 == 'Leanig Jowler') {
