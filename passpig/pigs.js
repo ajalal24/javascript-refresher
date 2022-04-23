@@ -1,7 +1,9 @@
 // Starting Player is 0.
 let playerNumber = 0;
+let player0HandScore = 0;
+let player0TotalScore = 0;
 
-// Usign handleClick to find the id of the pass or roll button. 
+// Using handleClick to find the id of the pass or roll button. 
 function handleClick(id) {
     if (id.includes('Pass')) {
         pass();
@@ -13,21 +15,35 @@ function handleClick(id) {
 function roll() {
     let pig1 = rollingPigs();
     let pig2 = rollingPigs();
+    updatePigs(pig1, pig2);
+
+    //myScore
+    let rollScore = scorePigs(pig1, pig2);
+    updatePigs(pig1, pig2);
+    showPlayerScore(rollScore);
+}
+
+function pass() {
+    switchPlayer();
+    //other stuff
+}
+
+function showPlayerScore(rollScore) {
+    if (rollScore == 0) {
+        console.log('0');
+    } else if (rollScore == 1) {
+        console.log('1');
+    } else {
+        console.log('Bigger')
+    }
+
+}
+function updatePigs(pig1, pig2) {
     let pig1Id = 'player' + playerNumber + 'Pig1';
     document.getElementById(pig1Id).innerHTML = pig1;
     let pig2Id = 'player' + playerNumber + 'Pig2';
     document.getElementById(pig2Id).innerHTML = pig2;
-
-    //myScore
-    let rollScore = scorePigs(pig1, pig2);
-    let handScore = rollScore;
-    console.log(handScore);
 }
-
-function pass() {
-    changeBackground();
-}
-
 function rollingPigs() {
     // Roll for a pig and index number
     const random = Math.random();
@@ -46,23 +62,38 @@ function rollingPigs() {
     }
 }
 
+// (p) added to statments with & and or to solve order of operations problem
 function scorePigs(pig1, pig2) {
     let score;
     if (pig1 == 'Dot' && pig2 == 'Dot') {
         score = 1;
     } else if (pig1 == 'No Dot' && pig2 == 'No Dot') {
         score = 1;
-    } else if (pig1 == 'Dot' && pig2 == 'No Dot' || pig1 == 'No Dot' && pig2 == 'Dot') {
+    } else if ((pig1 == 'Dot' && pig2 == 'No Dot') || (pig1 == 'No Dot' && pig2 == 'Dot')) {
         score = 0;
+    } else if (pig1 == 'Razorback' || pig2 == 'Razorback') {
+        score = 5;
     } else if (pig1 == 'Razorback' && pig2 == 'Razorback') {
+        score = 20;
+    } else if (pig1 == 'Trotter' || pig2 == 'Trotter') {
+        score = 5;
+    } else if (pig1 == 'Trotter' && pig2 == 'Trotter') {
+        score = 20;
+    } else if (pig1 == 'Snouter' || pig2 == 'Snouter') {
         score = 10;
+    } else if (pig1 == 'Snouter' && pig2 == 'Snouter') {
+        score = 60;
+    } else if (pig1 == 'Leanig Jowler' || pig2 == 'Leaning Jowler') {
+        score = 15;
+    } else if (pig1 == 'Leanig Jowler' && pig2 == 'Leanig Jowler') {
+        score = 60;
     }
 
     return score;
 }
 
 // Change the background of the card by getting the id of the card, (Cycles through each number making sure it never goes past 3)
-function changeBackground() {
+function switchPlayer() {
     let playerId = document.getElementById('player' + playerNumber);
     playerId.setAttribute('class', 'w3-card w3-container w3-light-gray w3-round-large');
     if (playerNumber == 3) {
