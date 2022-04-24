@@ -1,7 +1,8 @@
 // Starting Player is 0.
 let playerNumber = 0;
-let player0HScore = 0;
+let playerHandScore = 0;
 let player0TotalScore = 0;
+let playerIdHandScore = 'player' + playerNumber + 'HandScore';
 
 // Using handleClick to find the id of the pass or roll button. 
 function handleClick(id) {
@@ -17,44 +18,29 @@ function roll() {
     let pig2 = rollingPigs();
     updatePigs(pig1, pig2);
 
-    //myScore
+    //Score
     let rollScore = scorePigs(pig1, pig2);
-    updatePigs(pig1, pig2);
     showPlayerScore(rollScore);
 }
 
 function pass() {
     switchPlayer();
-    //other stuff
+    setScoreTotal();
+}
+
+// Setting the Score to add the new points earned to the old points
+function setScoreTotal() {
+    document.getElementById('player0TotalScore').innerHTML = 'Total Score: ' + (playerHandScore + player0TotalScore);
+    document.getElementById(playerIdHandScore).innerHTML = 'Score: ' + 0;
 }
 
 function showPlayerScore(rollScore) {
     if (rollScore == 0) {
-        player0HScore = 0;
-        // Heres the difficulty
-        document.getElementById(player0HandScore).innerHTML = player0HScore;
-        console.log(player0HScore);
-    } else if (rollScore == 1) {
-        player0HScore += 1;
-        console.log(player0HScore);
-    } else if (rollScore == 5) {
-        player0HScore += 5;
-        console.log(player0HScore);
-    } else if (rollScore == 10) {
-        player0HScore += 10;
-        console.log(player0HScore);
-    } else if (rollScore == 15) {
-        player0HScore += 15;
-        console.log(player0HScore);
-    } else if (rollScore == 20) {
-        player0HScore += 20;
-        console.log(player0HScore);
-    } else if (rollScore == 40) {
-        player0HScore += 40;
-        console.log(player0HScore);
+        playerHandScore = 0;
+        pass();
     } else {
-        player0HScore += 60;
-        console.log(player0HScore);
+        playerHandScore += rollScore;
+        document.getElementById(playerIdHandScore).innerHTML = 'Score: ' + playerHandScore;
     }
 }
 
@@ -117,12 +103,15 @@ function scorePigs(pig1, pig2) {
 function switchPlayer() {
     let playerId = document.getElementById('player' + playerNumber);
     playerId.setAttribute('class', 'w3-card w3-container w3-light-gray w3-round-large');
+    incrementPlayer()
+    playerId = document.getElementById('player' + playerNumber);
+    playerId.setAttribute('class', 'w3-card w3-container w3-dark-gray w3-round-large');
+}
+
+function incrementPlayer() {
     if (playerNumber == 3) {
         playerNumber = 0;
     } else {
         playerNumber++;
     }
-
-    playerId = document.getElementById('player' + playerNumber);
-    playerId.setAttribute('class', 'w3-card w3-container w3-dark-gray w3-round-large');
 }
