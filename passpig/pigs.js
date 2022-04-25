@@ -60,6 +60,7 @@ function showPlayerScore(rollScore) {
 }
 
 function updatePigs(pig1, pig2) {
+    //Updates the pig html on user screen to say which pig
     let pig1Id = 'player' + playerNumber + 'Pig1';
     document.getElementById(pig1Id).innerHTML = pig1;
     let pig2Id = 'player' + playerNumber + 'Pig2';
@@ -67,7 +68,7 @@ function updatePigs(pig1, pig2) {
 }
 
 function rollingPigs() {
-    // Roll for a pig and index number
+    // Roll for a pig and returns the pig name
     const random = Math.random();
     if (random < 0.007) {
         return 'Leaning Jowler';
@@ -84,7 +85,7 @@ function rollingPigs() {
     }
 }
 
-// (p) added to statments with & and or to solve order of operations problem
+// Gives a vaule to pig name. (p) added to statments with & and or to solve order of operations problem
 function scorePigs(pig1, pig2) {
     let score;
     if (pig1 == 'Dot' && pig2 == 'Dot') {
@@ -107,15 +108,16 @@ function scorePigs(pig1, pig2) {
         score = 40;
     } else if (pig1 == 'Leanig Jowler' || pig2 == 'Leaning Jowler') {
         score = 15;
-    } else if (pig1 == 'Leanig Jowler' && pig2 == 'Leanig Jowler') {
+    } else {
         score = 60;
     }
 
     return score;
 }
 
-// Change the background of the card by getting the id of the card, (Cycles through each number making sure it never goes past 3)
+// Change the background of the card by getting the id of the card.
 function switchPlayer() {
+    // Gets the player id and is then able to change the attributes (ex. color)
     let playerId = document.getElementById('player' + playerNumber);
     playerId.setAttribute('class', 'w3-card w3-container w3-light-gray w3-round-large');
     incrementPlayer()
@@ -123,6 +125,7 @@ function switchPlayer() {
     playerId.setAttribute('class', 'w3-card w3-container w3-dark-gray w3-round-large');
 }
 
+// Cycles through each number making sure it never goes past 3
 function incrementPlayer() {
     if (playerNumber == 3) {
         playerNumber = 0;
