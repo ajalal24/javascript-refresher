@@ -2,7 +2,9 @@
 let playerNumber = 0;
 let playerHandScore = 0;
 let player0TotalScore = 0;
-let playerIdHandScore = 'player' + playerNumber + 'HandScore';
+let player1TotalScore = 0;
+let player2TotalScore = 0;
+let player3TotalScore = 0;
 
 // Using handleClick to find the id of the pass or roll button. 
 function handleClick(id) {
@@ -24,14 +26,26 @@ function roll() {
 }
 
 function pass() {
-    switchPlayer();
     setScoreTotal();
+    switchPlayer();
 }
 
-// Setting the Score to add the new points earned to the old points
+// Setting the score to add the new points
 function setScoreTotal() {
-    document.getElementById('player0TotalScore').innerHTML = 'Total Score: ' + (playerHandScore + player0TotalScore);
-    document.getElementById(playerIdHandScore).innerHTML = 'Score: ' + 0;
+    let playerIdTotalScore = 'player' + playerNumber + 'TotalScore';
+    if (playerIdTotalScore == 'player0TotalScore') {
+        document.getElementById('player0TotalScore').innerHTML = 'Total Score: ' + (playerHandScore + player0TotalScore);
+        document.getElementById('player0HandScore').innerHTML = 'Score: ' + 0;
+    } else if (playerIdTotalScore == 'player1TotalScore') {
+        document.getElementById('player1TotalScore').innerHTML = 'Total Score: ' + (playerHandScore + player1TotalScore);
+        document.getElementById('player1HandScore').innerHTML = 'Score: ' + 0;
+    } else if (playerIdTotalScore == 'player2TotalScore') {
+        document.getElementById('player2TotalScore').innerHTML = 'Total Score: ' + (playerHandScore + player2TotalScore);
+        document.getElementById('player2HandScore').innerHTML = 'Score: ' + 0;
+    } else {
+        document.getElementById('player3TotalScore').innerHTML = 'Total Score: ' + (playerHandScore + player3TotalScore);
+        document.getElementById('player3HandScore').innerHTML = 'Score: ' + 0;
+    }
 }
 
 function showPlayerScore(rollScore) {
@@ -40,6 +54,7 @@ function showPlayerScore(rollScore) {
         pass();
     } else {
         playerHandScore += rollScore;
+        let playerIdHandScore = 'player' + playerNumber + 'HandScore';
         document.getElementById(playerIdHandScore).innerHTML = 'Score: ' + playerHandScore;
     }
 }
